@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Item 1",
+    "price": "$10.00",
+    "image": "https://img.freepik.com/free-psd/roasted-potato-salad-with-tomatoes-herbs-delicious-meal_632498-50545.jpg?semt=ais_hybrid"
+  },
+  {
+    "name": "Item 2",
+    "price": "$15.00",
+    "image": "https://i.pinimg.com/736x/c9/87/6a/c9876a77a7d611f80ff8fbbab8da5ad3.jpg"
+  },
+  {
+    "name": "Item 3",
+    "price": "$20.00",
+    "image": "https://i.pinimg.com/736x/c9/87/6a/c9876a77a7d611f80ff8fbbab8da5ad3.jpg"
+  },
+  {
+    "name": "Item 4",
+    "price": "$25.00",
+    "image": "https://i.pinimg.com/736x/c9/87/6a/c9876a77a7d611f80ff8fbbab8da5ad3.jpg"
+  },
+  {
+    "name": "Item 3",
+    "price": "$20.00",
+    "image": "https://i.pinimg.com/736x/c9/87/6a/c9876a77a7d611f80ff8fbbab8da5ad3.jpg"
+  },
+  {
+    "name": "Item 4",
+    "price": "$25.00",
+    "image": "https://i.pinimg.com/736x/c9/87/6a/c9876a77a7d611f80ff8fbbab8da5ad3.jpg"
+  },
+  {
+    "name": "Item 3",
+    "price": "$20.00",
+    "image": "https://i.pinimg.com/736x/c9/87/6a/c9876a77a7d611f80ff8fbbab8da5ad3.jpg"
+  },
+  {
+    "name": "Item 4",
+    "price": "$25.00",
+    "image": "https://i.pinimg.com/736x/c9/87/6a/c9876a77a7d611f80ff8fbbab8da5ad3.jpg"
+  }
+]

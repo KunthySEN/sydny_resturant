@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "operatingHours": {
+      "open": "08:00",
+      "close": "21:00"
+    },
+    "tables": [
+      {
+        "tableNumber": "1",
+        "image": "https://i.pinimg.com/564x/31/8e/57/318e57366d70a7254a760d3c328480a9.jpg",
+        "isAvailable": true,
+        "bookings": []
+      },
+      {
+        "tableNumber": "2",
+        "image": "https://i.pinimg.com/564x/31/8e/57/318e57366d70a7254a760d3c328480a9.jpg",
+        "isAvailable": false,
+        "bookings": [
+          {
+            "date": "2025-03-15",
+            "startTime": "15:00",
+            "endTime": "17:00"
+          }
+        ]
+      },
+      {
+        "tableNumber": "3",
+        "image": "https://i.pinimg.com/564x/31/8e/57/318e57366d70a7254a760d3c328480a9.jpg",
+        "isAvailable": true,
+        "bookings": []
+      },
+      {
+        "tableNumber": "4",
+        "image": "https://i.pinimg.com/564x/31/8e/57/318e57366d70a7254a760d3c328480a9.jpg",
+        "isAvailable": false,
+        "bookings": [
+          {
+            "date": "2023-10-15",
+            "startTime": "18:00",
+            "endTime": "20:00"
+          }
+        ]
+      },
+      {
+        "tableNumber": "5",
+        "image": "https://i.pinimg.com/564x/31/8e/57/318e57366d70a7254a760d3c328480a9.jpg",
+        "isAvailable": true,
+        "bookings": []
+      },
+      {
+        "tableNumber": "6",
+        "image": "https://i.pinimg.com/564x/31/8e/57/318e57366d70a7254a760d3c328480a9.jpg",
+        "isAvailable": true,
+        "bookings": []
+      }
+    ]
+  }
+}
