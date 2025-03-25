@@ -3,16 +3,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckoutFragment">
+    tools:context=".CheckoutFragment"
+    android:background="@color/white">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_checkout"
+    <LinearLayout
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Checkout"
-        android:backgroundTint="@color/orange"
-        android:textColor="@android:color/white"
-        android:padding="16dp"
-        android:layout_marginTop="70dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Booking Confirmation"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Date -->
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: "
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time: "
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Table ID -->
+        <TextView
+            android:id="@+id/textViewTableId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table ID: "
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Confirmation Message -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thank you for your booking! Please confirm your details above."
+            android:textSize="16sp"
+            android:textColor="@color/gray"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Finalize Booking Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonFinalizeBooking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finalize Booking"
+            android:backgroundTint="@color/orange"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
 
 </FrameLayout>

@@ -1,11 +1,13 @@
 package com.projects.sydnyrestaurant
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import com.projects.sydnyrestaurant.models.TableEntity
 
 class TableAdapter(
@@ -27,20 +29,21 @@ class TableAdapter(
         val tableCardView = view.findViewById<CardView>(R.id.table_card)
 
         // Set the table number
-        tableNumberTextView.text = table.tableNumber
+        tableNumberTextView.text = "Table ${table.tableNumber}"
 
         // Set color based on availability
-        tableCardView.setCardBackgroundColor(
             if (table.isAvailable) {
-                parent?.context?.getColor(R.color.orange) ?: 0 // Use safe call to get context
+                tableCardView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(view.context, R.color.orange))
             } else {
-                parent?.context?.getColor(R.color.gray) ?: 0 // Use safe call to get context
+                tableCardView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(view.context, R.color.gray))
+
             }
-        )
 
         // Set click listener for the table
         view.setOnClickListener {
-            onTableClick(table)
+            if (table.isAvailable) { // Only allow clicks on available tables
+                onTableClick(table)
+            }
         }
 
         return view

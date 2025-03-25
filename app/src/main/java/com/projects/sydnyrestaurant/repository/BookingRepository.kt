@@ -7,9 +7,8 @@ import com.projects.sydnyrestaurant.models.TableEntity
 
 class BookingRepository(private val bookingDao: BookingDao, private val tableDao: TableDao) {
 
-
+    // Get available tables based on the selected date and time
     suspend fun getAvailableTables(date: String, startTime: String): List<TableEntity> {
-
         val endTime = calculateEndTime(startTime)
         val bookings = bookingDao.getBookingsByDateAndTime(date, startTime, endTime)
         val bookedTableIds = bookings.map { it.tableId }
@@ -20,18 +19,25 @@ class BookingRepository(private val bookingDao: BookingDao, private val tableDao
         }
     }
 
+    // Calculate the end time based on the start time (e.g., 2 hours later)
     private fun calculateEndTime(startTime: String): String {
-        // Implement logic to calculate end time (2 hours later)
-        // For simplicity, let's assume startTime is in "HH:mm" format
         val parts = startTime.split(":").map { it.toInt() }
-        val hour = parts[0] + 2 // Add 2 hours
+        val hour = (parts[0] + 2) % 24 // Add 2 hours and wrap around if necessary
         val minute = parts[1]
-        return String.format("%02d:%02d", hour % 24, minute) // Wrap around if hour exceeds 24
+        return String.format("%02d:%02d", hour, minute)
     }
 
+    // Book a table and mark it as unavailable
     suspend fun bookTable(booking: BookingEntity) {
-        bookingDao.insertBooking(booking)
-        val table = tableDao.getTableById(booking.tableId)
-        tableDao.updateTable(table.copy(isAvailable = false)) // Mark table as unavailable
+        bookingDao.insertBooking(booking) // Insert the booking into the database
+        val table = tableDao.getTableById(booking.tableId) // Get the table by ID
+        tableDao.updateTable(table.copy(isAvailable = false)) // Mark the table as unavailable
+    }
+
+    // Check if a table is already booked for the selected date and time
+    suspend fun isTableBooked(tableId: Long, date: String, time: String): Boolean {
+        val endTime = calculateEndTime(time)
+        val bookings = bookingDao.getBookingsByDateAndTime(date, time, endTime)
+        return bookings.any { it.tableId == tableId }
     }
 }
