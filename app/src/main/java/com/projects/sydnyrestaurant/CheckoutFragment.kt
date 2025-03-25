@@ -1,5 +1,6 @@
 package com.projects.sydnyrestaurant
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -83,8 +84,9 @@ class CheckoutFragment : Fragment() {
             // Call the ViewModel to book the table
             viewModel.bookTable(booking)
 
-            // Provide user feedback
-            Toast.makeText(requireContext(), "Booking confirmed!", Toast.LENGTH_SHORT).show()
+            // Navigate to the Thank You activity
+            val intent = Intent(requireContext(), ThankYouActivity::class.java)
+            startActivity(intent)
 
             // Optionally navigate to a confirmation screen or back to the main screen
         } else {

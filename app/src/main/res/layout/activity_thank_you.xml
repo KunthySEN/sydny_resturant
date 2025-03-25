@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ThankYouActivity"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <ImageView
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg">
+    </ImageView>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thank You.\n Your booking is confirmed."
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="@color/yellow">
+    </TextView>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please feel free to get in touch with us on 022 2323 231, if you need any other customisations in your booking."
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="@color/gray">
+    </TextView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:backgroundTint="@color/orange"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="20dp"/>
+
+
+</LinearLayout>
