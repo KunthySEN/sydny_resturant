@@ -49,6 +49,11 @@ class TableFragment : Fragment() {
         // Initialize SharedViewModel
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
+        // Initially disable the button
+        reserveButton.isEnabled = false
+        reserveButton.setBackgroundTintList(null) // Set to default or transparent
+        reserveButton.setTextColor(resources.getColor(android.R.color.darker_gray, null)) // Set to gray
+
         // Load tables based on selected date and time
         loadAvailableTables()
 
@@ -83,6 +88,8 @@ class TableFragment : Fragment() {
                 val adapter = TableAdapter(tables) { table ->
                     selectedTableId = table.id // Store selected table ID
                     reserveButton.isEnabled = true // Enable the Reserve button
+                    reserveButton.setBackgroundTintList(resources.getColorStateList(R.color.orange, null)) // Set to orange
+                    reserveButton.setTextColor(resources.getColor(android.R.color.white, null)) // Set to white
                 }
                 tableGridView.adapter = adapter
             }

@@ -35,6 +35,11 @@ class BookingFragment : Fragment() {
         timeTextView = view.findViewById(R.id.textViewSelectedTime)
         selectTableButton = view.findViewById(R.id.select_table)
 
+        // Initially disable the button
+        selectTableButton.isEnabled = false
+        selectTableButton.setBackgroundTintList(null) // Set to default or transparent
+        selectTableButton.setTextColor(resources.getColor(android.R.color.darker_gray, null)) // Set to gray
+
         view.findViewById<MaterialButton>(R.id.buttonSelectDate).setOnClickListener { showDatePickerDialog() }
         view.findViewById<MaterialButton>(R.id.buttonSelectTime).setOnClickListener { showTimePickerDialog() }
 
@@ -63,6 +68,7 @@ class BookingFragment : Fragment() {
         val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
             selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
             dateTextView.text = selectedDate
+            checkIfButtonShouldBeEnabled()
         }, year, month, day)
 
         datePickerDialog.show()
@@ -76,8 +82,21 @@ class BookingFragment : Fragment() {
         val timePickerDialog = TimePickerDialog(requireContext(), { _, selectedHour, selectedMinute ->
             selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
             timeTextView.text = selectedTime
+            checkIfButtonShouldBeEnabled()
         }, hour, minute, true)
 
         timePickerDialog.show()
+    }
+
+    private fun checkIfButtonShouldBeEnabled() {
+        if (selectedDate.isNotEmpty() && selectedTime.isNotEmpty()) {
+            selectTableButton.isEnabled = true
+            selectTableButton.setBackgroundTintList(resources.getColorStateList(R.color.orange, null)) // Set to orange
+            selectTableButton.setTextColor(resources.getColor(android.R.color.white, null)) // Set to white
+        } else {
+            selectTableButton.isEnabled = false
+            selectTableButton.setBackgroundTintList(null) // Set to default or transparent
+            selectTableButton.setTextColor(resources.getColor(android.R.color.darker_gray, null)) // Set to gray
+        }
     }
 }

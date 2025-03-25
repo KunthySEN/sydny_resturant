@@ -87,10 +87,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Table"
-                android:backgroundTint="@color/orange"
-                android:textColor="@android:color/white"
                 android:padding="16dp"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:enabled="false"/>
 
         </LinearLayout>
 
