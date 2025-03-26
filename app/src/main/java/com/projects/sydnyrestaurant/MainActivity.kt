@@ -1,11 +1,14 @@
 package com.projects.sydnyrestaurant
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.projects.sydnyrestaurant.data.AppDatabase
 import com.projects.sydnyrestaurant.models.TableEntity
 import kotlinx.coroutines.CoroutineScope
@@ -46,10 +49,34 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(BookingFragment())
                     true
                 }
+                R.id.nav_logout->{
+                    logout(this)
+                    true
+                }
 
-                else -> false
+                else -> super.onOptionsItemSelected(menuItem)
             }
         }
+
+    }
+
+    private fun logout(context: Context) {
+        clearUserSession(context)
+        navigateToWelcome(context)
+        Snackbar.make(findViewById(R.id.fragment_container), "You have been logged out", Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun clearUserSession(context: Context) {
+        val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+    }
+
+    private fun navigateToWelcome(context: Context) {
+        val intent = Intent(context, WelcomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        context.startActivity(intent)
     }
 
     private fun loadFragment(fragment: Fragment) {
@@ -70,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                 val tables = listOf(
                     TableEntity(tableNumber = "Table 1", capacity = 4),
                     TableEntity(tableNumber = "Table 2", capacity = 4),
+
                 )
                 tables.forEach { table ->
                     database.tableDao().insertTable(table)

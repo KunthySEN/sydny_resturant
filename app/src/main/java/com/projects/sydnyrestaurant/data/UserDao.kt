@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.projects.sydnyrestaurant.models.UserEntity
 
 @Dao
@@ -16,4 +17,10 @@ interface UserDao {
 
     @Query("SELECT * FROM users")
     suspend fun getAllUsers(): List<UserEntity>
+
+    @Query("SELECT * FROM users WHERE email = :email")
+    suspend fun getUserByEmail(email: String): UserEntity?
+
+    @Update
+    suspend fun updateUser(user: UserEntity)
 }

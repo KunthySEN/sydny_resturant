@@ -27,6 +27,12 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText: EditText = findViewById(R.id.password)
         val loginButton: Button = findViewById(R.id.sign_in_button)
         val createAnAccount: TextView = findViewById(R.id.create_an_account)
+        val forgotPasswordTextView: TextView = findViewById(R.id.forget_pwd)
+
+        forgotPasswordTextView.setOnClickListener {
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()

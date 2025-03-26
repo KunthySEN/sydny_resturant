@@ -2,8 +2,10 @@ package com.projects.sydnyrestaurant
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +17,7 @@ import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var db: AppDatabase
+    private lateinit var loadingIndicator: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         db = AppDatabase.getDatabase(this)
+        loadingIndicator = findViewById(R.id.loading_indicator)
 
         val emailEditText: EditText = findViewById(R.id.email)
         val passwordEditText: EditText = findViewById(R.id.password)
@@ -34,8 +38,14 @@ class RegisterActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
             val confirmPassword = confirmPasswordEditText.text.toString()
 
+            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (password == confirmPassword) {
-                registerUser (email, password)
+                showLoading(true)
+                registerUser(email, password)
             } else {
                 Toast.makeText(this, "Registration Failed: Passwords do not match", Toast.LENGTH_SHORT).show()
             }
@@ -47,10 +57,14 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun registerUser (email: String, password: String) {
+    private fun showLoading(show: Boolean) {
+        loadingIndicator.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    private fun registerUser(email: String, password: String) {
         lifecycleScope.launch {
-            val existingUser  = db.userDao().getUser (email, password)
-            if (existingUser  == null) {
+            val existingUser = db.userDao().getUser(email, password)
+            if (existingUser == null) {
                 db.userDao().insert(UserEntity(email, password))
                 Toast.makeText(this@RegisterActivity, "Registration Successful", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
@@ -58,6 +72,7 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this@RegisterActivity, "Registration Failed: User already exists", Toast.LENGTH_SHORT).show()
             }
+            showLoading(false)
         }
     }
 }
