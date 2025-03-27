@@ -24,6 +24,7 @@ class BookingFragment : Fragment() {
     private var selectedDate: String = ""
     private var selectedTime: String = ""
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -25,12 +26,15 @@ class CheckoutFragment : Fragment() {
     private lateinit var timeTextView: TextView
     private lateinit var tableIdTextView: TextView
     private lateinit var finalizeBookingButton: Button
+    private lateinit var actionBack: ImageView
+    private lateinit var title: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_checkout, container, false)
+        setupToolbar(view)
 
         // Initialize SharedViewModel
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
@@ -65,6 +69,15 @@ class CheckoutFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun setupToolbar(view: View) {
+        title = view.findViewById(R.id.appBarTitle)
+        actionBack = view.findViewById(R.id.action_back)
+        actionBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+        title.text = "Checkout"
     }
 
     private fun confirmBooking() {

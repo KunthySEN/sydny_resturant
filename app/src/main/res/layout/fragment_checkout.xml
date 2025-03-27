@@ -5,6 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".CheckoutFragment"
     android:background="@color/white">
+    <include
+        android:id="@+id/action_bar"
+        layout="@layout/action_bar" />
 
     <LinearLayout
         android:layout_marginTop="70dp"
