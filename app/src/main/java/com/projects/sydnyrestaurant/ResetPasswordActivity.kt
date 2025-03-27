@@ -3,6 +3,8 @@ package com.projects.sydnyrestaurant
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -13,10 +15,15 @@ import kotlinx.coroutines.launch
 
 class ResetPasswordActivity : AppCompatActivity() {
     private lateinit var db: AppDatabase
+    private lateinit var actionBack: ImageView
+    private lateinit var title: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide() // Hide the default action bar
+
         setContentView(R.layout.activity_reset_password)
+        setupToolbar()
 
         db = AppDatabase.getDatabase(this)
         val email = intent.getStringExtra("email")
@@ -41,15 +48,19 @@ class ResetPasswordActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupToolbar() {
+        title = findViewById(R.id.appBarTitle)
+        actionBack = findViewById(R.id.action_back)
+        actionBack.setOnClickListener {
+            onBackPressed()
+        }
+        title.text = "Reset Password"    }
+
 
     private fun setNewPassword(newPassword: String,email: String) {
         lifecycleScope.launch {
             try {
-                Log.d("setNewPassword","try block")
-
                 val user = db.userDao().getUserByEmail(email)
-                Log.d("setNewPassword","$email"+"$user")
-
                 if (user != null) {
                     user.password = newPassword
                     db.userDao().updateUser(user)

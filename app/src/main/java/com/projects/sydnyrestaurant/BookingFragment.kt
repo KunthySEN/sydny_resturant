@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.button.MaterialButton
 import com.projects.sydnyrestaurant.viewmodel.SharedViewModel
 import java.util.Calendar
@@ -16,8 +17,8 @@ import java.util.Calendar
 class BookingFragment : Fragment() {
 
     private lateinit var sharedViewModel: SharedViewModel
-    private lateinit var dateTextView: TextView
-    private lateinit var timeTextView: TextView
+    private lateinit var dateEditText: TextInputEditText
+    private lateinit var timeEditText: TextInputEditText
     private lateinit var selectTableButton: MaterialButton
 
     private var selectedDate: String = ""
@@ -31,8 +32,8 @@ class BookingFragment : Fragment() {
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        dateTextView = view.findViewById(R.id.textViewSelectedDate)
-        timeTextView = view.findViewById(R.id.textViewSelectedTime)
+        dateEditText = view.findViewById(R.id.textViewSelectedDate)
+        timeEditText = view.findViewById(R.id.textViewSelectedTime)
         selectTableButton = view.findViewById(R.id.select_table)
 
         // Initially disable the button
@@ -40,8 +41,8 @@ class BookingFragment : Fragment() {
         selectTableButton.setBackgroundTintList(null) // Set to default or transparent
         selectTableButton.setTextColor(resources.getColor(android.R.color.darker_gray, null)) // Set to gray
 
-        view.findViewById<MaterialButton>(R.id.buttonSelectDate).setOnClickListener { showDatePickerDialog() }
-        view.findViewById<MaterialButton>(R.id.buttonSelectTime).setOnClickListener { showTimePickerDialog() }
+        dateEditText.setOnClickListener { showDatePickerDialog() }
+        timeEditText.setOnClickListener { showTimePickerDialog() }
 
         selectTableButton.setOnClickListener {
             // Set values in SharedViewModel
@@ -67,7 +68,7 @@ class BookingFragment : Fragment() {
 
         val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
             selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
-            dateTextView.text = selectedDate
+            dateEditText.setText(selectedDate)
             checkIfButtonShouldBeEnabled()
         }, year, month, day)
 
@@ -81,7 +82,7 @@ class BookingFragment : Fragment() {
 
         val timePickerDialog = TimePickerDialog(requireContext(), { _, selectedHour, selectedMinute ->
             selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
-            timeTextView.text = selectedTime
+            timeEditText.setText(selectedTime)
             checkIfButtonShouldBeEnabled()
         }, hour, minute, true)
 
