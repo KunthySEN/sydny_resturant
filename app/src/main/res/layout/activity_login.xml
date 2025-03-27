@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login here"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="70dp"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/orange"
@@ -24,51 +24,65 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome back you’ve been missed!"
-        android:textSize="16sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="32dp"/>
 
-    <EditText
-        android:id="@+id/email"
-        style="@style/EditTextStyle"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginBottom="16dp"/>
+        android:hint="Email">
 
-    <EditText
-        android:id="@+id/password"
-        style="@style/EditTextStyle"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <TextView
         android:id="@+id/forget_pwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot your password?"
+        android:text="Forgot password?"
         android:textColor="@color/orange"
         android:layout_gravity="end"
-        android:layout_marginTop="10dp" />
-
-    <Button
+        android:layout_marginTop="20dp" />
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign In"
-        android:backgroundTint="@color/orange"
-        android:textColor="@android:color/white"
-        android:padding="16dp"
-        android:layout_marginTop="20dp"/>
+        android:textColor="@color/white"
+        android:layout_marginTop="26dp" />
+
+<!--    <Button-->
+<!--        android:id="@+id/sign_in_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Sign In"-->
+<!--        android:backgroundTint="@color/orange"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        android:padding="16dp"-->
+<!--        android:layout_marginTop="20dp"/>-->
 
     <TextView
         android:id="@+id/create_an_account"
@@ -85,14 +99,14 @@
         android:text="Or continue with"
         android:textColor="@color/orange"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"/>
+        android:layout_marginTop="30dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:gravity="center">
 
         <ImageButton
@@ -100,8 +114,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
             android:src="@drawable/google"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginHorizontal="20dp"
             android:contentDescription="Google" />
 
         <ImageButton
@@ -109,17 +122,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
             android:src="@drawable/facebook"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginHorizontal="20dp"
             android:contentDescription="Facebook" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
-            android:src="@drawable/apple"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:src="@drawable/instagram"
             android:contentDescription="Apple" />
     </LinearLayout>
 </LinearLayout>

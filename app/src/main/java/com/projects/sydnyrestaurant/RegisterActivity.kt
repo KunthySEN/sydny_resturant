@@ -67,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
             if (existingUser == null) {
                 db.userDao().insert(UserEntity(email, password))
                 Toast.makeText(this@RegisterActivity, "Registration Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                 finish()
             } else {
                 Toast.makeText(this@RegisterActivity, "Registration Failed: User already exists", Toast.LENGTH_SHORT).show()

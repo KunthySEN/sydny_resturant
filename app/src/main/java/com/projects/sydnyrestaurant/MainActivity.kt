@@ -3,8 +3,8 @@ package com.projects.sydnyrestaurant
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -14,7 +14,6 @@ import com.projects.sydnyrestaurant.models.TableEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.ArrayList
 import java.util.Date
 
 class MainActivity : AppCompatActivity() {
@@ -49,15 +48,28 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(BookingFragment())
                     true
                 }
-                R.id.nav_logout->{
-                    logout(this)
+                R.id.nav_logout -> {
+                    showLogoutConfirmationDialog()
                     true
                 }
 
                 else -> super.onOptionsItemSelected(menuItem)
             }
         }
+    }
 
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Logout")
+        builder.setMessage("Do you really want to logout?")
+        builder.setPositiveButton("Yes") { dialog, _ ->
+            dialog.dismiss()
+            logout(this)
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.create().show()
     }
 
     private fun logout(context: Context) {
@@ -90,14 +102,11 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             // Check if tables already exist
             val existingTables = database.tableDao().getAllTables()
-            Log.d("table list", "$existingTables")
-            val dateList = arrayListOf(Date(), Date(System.currentTimeMillis() - 86400000))
             if (existingTables.isEmpty()) {
                 // Insert sample tables
                 val tables = listOf(
                     TableEntity(tableNumber = "Table 1", capacity = 4),
-                    TableEntity(tableNumber = "Table 2", capacity = 4),
-
+                    TableEntity(tableNumber = "Table 2", capacity = 4)
                 )
                 tables.forEach { table ->
                     database.tableDao().insertTable(table)
