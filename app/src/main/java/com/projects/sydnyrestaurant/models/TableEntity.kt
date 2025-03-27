@@ -13,6 +13,6 @@ data class TableEntity(
     val tableNumber: String,
     val capacity: Int,
     var isAvailable: Boolean = true ,// Default to true
-  //  var dateTime: ArrayList<Date>
+    val imageResId : Int
 )
 

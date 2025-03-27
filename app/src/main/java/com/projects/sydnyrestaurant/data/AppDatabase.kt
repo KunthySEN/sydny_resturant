@@ -8,7 +8,7 @@ import com.projects.sydnyrestaurant.models.BookingEntity
 import com.projects.sydnyrestaurant.models.TableEntity
 import com.projects.sydnyrestaurant.models.UserEntity
 
-@Database(entities = [UserEntity::class, TableEntity::class, BookingEntity::class], version = 4, exportSchema = false)
+@Database(entities = [UserEntity::class, TableEntity::class, BookingEntity::class], version = 6, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun tableDao(): TableDao

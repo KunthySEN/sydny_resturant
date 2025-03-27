@@ -103,10 +103,14 @@ class MainActivity : AppCompatActivity() {
             // Check if tables already exist
             val existingTables = database.tableDao().getAllTables()
             if (existingTables.isEmpty()) {
-                // Insert sample tables
+                // Insert sample tables with different image resource IDs
                 val tables = listOf(
-                    TableEntity(tableNumber = "Table 1", capacity = 4),
-                    TableEntity(tableNumber = "Table 2", capacity = 4)
+                    TableEntity(tableNumber = "1", capacity = 1, imageResId = R.drawable.tbsingle),
+                    TableEntity(tableNumber = "2", capacity = 4, imageResId = R.drawable.tbgroup),
+                    TableEntity(tableNumber = "3", capacity = 1, imageResId = R.drawable.tbsingle),
+                    TableEntity(tableNumber = "4", capacity = 2, imageResId = R.drawable.tbcouple),
+                    TableEntity(tableNumber = "5", capacity = 4, imageResId = R.drawable.tbgroup),
+                    TableEntity(tableNumber = "6", capacity = 2, imageResId = R.drawable.tbcouple)
                 )
                 tables.forEach { table ->
                     database.tableDao().insertTable(table)
