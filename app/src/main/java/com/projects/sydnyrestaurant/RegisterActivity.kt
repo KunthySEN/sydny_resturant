@@ -63,7 +63,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerUser(email: String, password: String) {
         lifecycleScope.launch {
-            val existingUser = db.userDao().getUser(email, password)
+            val existingUser = db.userDao().getUserByEmail(email)
             if (existingUser == null) {
                 db.userDao().insert(UserEntity(email, password))
                 Toast.makeText(this@RegisterActivity, "Registration Successful", Toast.LENGTH_SHORT).show()
